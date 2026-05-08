@@ -15,8 +15,8 @@ pipeline{
             }
         }
     }
-    parallel('test'){
-        stages{
+    stage('test'){
+        parallel{
             stage('testA'){
                 steps{
                     echo 'this is test A'
