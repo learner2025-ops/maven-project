@@ -8,11 +8,6 @@ pipeline{
             steps{
               sh 'mvn clean package'
             }
-           post {
-            success {
-                    archiveArtifacts artifacts: '**/target/*.war'
-                }         
-            }
         }
         stage('test'){
         parallel{
@@ -28,5 +23,10 @@ pipeline{
             }
         }
     }
+    post {
+            success {
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }         
+            }
     }
 }
