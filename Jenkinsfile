@@ -15,7 +15,7 @@ pipeline{
             }
         }
     }
-    parellel('test'){
+    parallel('test'){
         stages{
             stage('testA'){
                 steps{
