@@ -54,7 +54,7 @@ environment {
             dir("/var/www/html"){
                 unstash "maven-build"
             }
-            sshagent(credentials: ['tomcat-server-ssh']) {
+            sshagent(credentials: ['remote_ssh_login']) {
 
                     sh '''
                     
