@@ -58,7 +58,7 @@ environment {
                     echo "Copy WAR to remote server"
 
                     scp -o StrictHostKeyChecking=no \
-                    ${WORKSPACE}/webapp/target/*.war \
+                    webapp/target/*.war \
                     ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
 
                     echo "Deploy application"
