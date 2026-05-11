@@ -51,9 +51,9 @@ environment {
         // beforeAgent true}
         // agent { label 'dev'}
         steps{
-            dir("/var/www/html"){
+            //dir("/var/www/html"){
                 unstash "maven-build"
-            }
+            //}
             sshagent(credentials: ['remote_ssh_login']) {
 
                     sh '''
@@ -73,7 +73,8 @@ environment {
 
                         mv /tmp/${APP_NAME}.war \
                         ${TOMCAT_PATH}/${APP_NAME}.war
-
+                        cd /var/www/html/
+                        jar -xvf webapp.jar
                         systemctl restart apache2
                     "
                     '''
