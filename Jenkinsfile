@@ -35,15 +35,15 @@ environment {
                 }
             }
         }
-        post {
-            success {
-                // dir("webapp/target/")
-                // {
-                //     stash name: "maven-build", includes: "*.war"
-                // }
-                    archiveArtifacts artifacts: '**/target/*.war'
-                }         
-            }
+        // post {
+        //     success {
+        //         // dir("webapp/target/")
+        //         // {
+        //         //     stash name: "maven-build", includes: "*.war"
+        //         // }
+        //             //archiveArtifacts artifacts: '**/target/*.war'
+        //         }         
+        //     }
     }
     stage("deploy_dev")
     {
