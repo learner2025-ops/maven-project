@@ -56,7 +56,8 @@ environment {
             sshagent(credentials: ['remote_ssh_login']) {
                     sh '''
                     echo "Copy WAR to remote server"
-
+                    cd ${WORKSPACE}
+                    cd ..
                     scp -o StrictHostKeyChecking=no \
                     deployment/webapp/target/*.war \
                     ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
