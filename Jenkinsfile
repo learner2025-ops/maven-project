@@ -52,28 +52,12 @@ environment {
         // agent { label 'dev'}
          agent any
         steps{
-            //dir("/var/www/html"){
+            dir("/var/www/html"){
                 unstash "maven-build"
-            //}
+            }
             sshagent(credentials: ['remote_ssh_login']) {
 
                     sh '''
-                    
-                    echo "Copy WAR to remote server"
-
-                    scp -o StrictHostKeyChecking=no \
-                    ./webapp/target/*.war \
-                    ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
-
-                    echo "Deploy application"
-
-                    ssh -o StrictHostKeyChecking=no \
-                    ${REMOTE_USER}@${REMOTE_SERVER} "
-
-                        rm -rf ${TOMCAT_PATH}/${APP_NAME}*
-
-                        mv /tmp/${APP_NAME}.war \
-                        ${TOMCAT_PATH}/${APP_NAME}.war
                         cd /var/www/html/
                         jar -xvf webapp.jar
                         systemctl restart apache2
@@ -84,3 +68,20 @@ environment {
     }
     }
 }
+
+
+// echo "Copy WAR to remote server"
+
+                    // scp -o StrictHostKeyChecking=no \
+                    // ./webapp/target/*.war \
+                    // ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
+
+                    // echo "Deploy application"
+
+                    // ssh -o StrictHostKeyChecking=no \
+                    // ${REMOTE_USER}@${REMOTE_SERVER} "
+
+                    //     rm -rf ${TOMCAT_PATH}/${APP_NAME}*
+
+                    //     mv /tmp/${APP_NAME}.war \
+                    //     ${TOMCAT_PATH}/${APP_NAME}.war
