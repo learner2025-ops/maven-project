@@ -52,11 +52,11 @@ environment {
         // agent { label 'dev'}
          agent any
         steps{
-            dir("/var/www/html"){
+            
+            sshagent(credentials: ['remote_ssh_login']) {
+dir("/var/www/html"){
                 unstash "maven-build"
             }
-            sshagent(credentials: ['remote_ssh_login']) {
-
                     sh '''
                         cd /var/www/html/
                         jar -xvf webapp.jar
