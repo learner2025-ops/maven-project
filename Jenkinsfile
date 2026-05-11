@@ -50,9 +50,9 @@ environment {
         // when{ expression {params.select_environment == 'dev'}
         // beforeAgent true}
         // agent { label 'dev'}
+         agent any
         steps{
             //dir("/var/www/html"){
-            agent any
                 unstash "maven-build"
             //}
             sshagent(credentials: ['remote_ssh_login']) {
