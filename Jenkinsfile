@@ -3,9 +3,9 @@ pipeline{
     tools{
         maven 'maven'
     }
-    parameters {
-  choice choices: ['dev', 'prod'], name: 'select_environment'
-}
+//     parameters {
+//   choice choices: ['dev', 'prod'], name: 'select_environment'
+// }
 environment {
         REMOTE_SERVER = "54.198.1.69"
         REMOTE_USER   = "ubuntu"
@@ -47,9 +47,9 @@ environment {
     }
     stage("deploy_dev")
     {
-        when{ expression {params.select_environment == 'dev'}
-        beforeAgent true}
-        agent { label 'dev'}
+        // when{ expression {params.select_environment == 'dev'}
+        // beforeAgent true}
+        // agent { label 'dev'}
         steps{
             dir("/var/www/html"){
                 unstash "maven-build"
