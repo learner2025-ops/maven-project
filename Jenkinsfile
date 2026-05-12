@@ -72,7 +72,7 @@ environment {
                         mv /tmp/${APP_NAME}.war \
                         ${TOMCAT_PATH}/${APP_NAME}.war
                         cd /var/www/html/
-                        jar -xvf webapp.jar
+                        jar -xvf webapp.war
                         sudo systemctl restart apache2
                     "
                     '''
