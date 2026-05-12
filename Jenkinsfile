@@ -7,7 +7,7 @@ pipeline{
 //   choice choices: ['dev', 'prod'], name: 'select_environment'
 // }
 environment {
-        REMOTE_SERVER = "52.205.5.129"
+        REMOTE_SERVER = "3.81.74.39"
         REMOTE_USER   = "ubuntu"
         TOMCAT_PATH   = "/var/www/html"
         APP_NAME      = "webapp"
