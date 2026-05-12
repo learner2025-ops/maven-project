@@ -73,7 +73,7 @@ environment {
                         ${TOMCAT_PATH}/${APP_NAME}.war
                         cd /var/www/html/
                         jar -xvf webapp.jar
-                        systemctl restart apache2
+                        sudo systemctl restart apache2
                     "
                     '''
                 }
