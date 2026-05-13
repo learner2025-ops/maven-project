@@ -7,7 +7,8 @@ pipeline{
 //   choice choices: ['dev', 'prod'], name: 'select_environment'
 // }
 environment {
-        REMOTE_SERVER = "3.81.74.39"
+        DEV_SERVER = "35.175.204.225"
+        PROD_SERVER = "184.73.10.171"
         REMOTE_USER   = "ubuntu"
         TOMCAT_PATH   = "/var/www/html"
         APP_NAME      = "webapp"
@@ -52,7 +53,39 @@ environment {
         // agent { label 'dev'}
          agent any
         steps{
-            
+            when { branch "feature" beforeAgent true}
+            sshagent(credentials: ['remote_ssh_login']) {
+                    sh '''
+                    echo "Copy WAR to remote server"
+                    scp -o StrictHostKeyChecking=no \
+                    /var/lib/jenkins/workspace/deployment/webapp/target/*.war \
+                    ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
+
+                    echo "Deploy application"
+
+                    ssh -o StrictHostKeyChecking=no \
+                    ${REMOTE_USER}@${REMOTE_SERVER} "
+
+                        rm -rf ${TOMCAT_PATH}/${APP_NAME}*
+
+                        mv /tmp/${APP_NAME}.war \
+                        ${TOMCAT_PATH}/${APP_NAME}.war
+                        cd /var/www/html/
+                        jar -xvf webapp.war
+                        sudo systemctl restart apache2
+                    "
+                    '''
+                }
+        }
+    }
+    stage("deploy_prod")
+    {
+        // when{ expression {params.select_environment == 'dev'}
+        // beforeAgent true}
+        // agent { label 'dev'}
+         agent any
+        steps{
+            when { branch "master" beforeAgent true}
             sshagent(credentials: ['remote_ssh_login']) {
                     sh '''
                     echo "Copy WAR to remote server"
