@@ -19,33 +19,33 @@ environment {
               sh 'mvn clean package -DskipTests=true'
             }
         }
-        stage('test'){
-        parallel{
-            stage('testA'){
-                agent any
-                steps{
-                    echo 'this is test A'
-                    sh 'mvn test'
-                }
-            }
-            stage('testB'){
-                agent any
-                steps{
-                    echo 'this is test B'
-                    sh 'mvn test'
-                }
-            }
-        }
-        // post {
-        //     success {
-        //         // dir("webapp/target/")
-        //         // {
-        //         //     stash name: "maven-build", includes: "*.war"
-        //         // }
-        //             //archiveArtifacts artifacts: '**/target/*.war'
-        //         }         
-        //     }
-    }
+    //     stage('test'){
+    //     parallel{
+    //         stage('testA'){
+    //             agent any
+    //             steps{
+    //                 echo 'this is test A'
+    //                 sh 'mvn test'
+    //             }
+    //         }
+    //         stage('testB'){
+    //             agent any
+    //             steps{
+    //                 echo 'this is test B'
+    //                 sh 'mvn test'
+    //             }
+    //         }
+    //     }
+    //     // post {
+    //     //     success {
+    //     //         // dir("webapp/target/")
+    //     //         // {
+    //     //         //     stash name: "maven-build", includes: "*.war"
+    //     //         // }
+    //     //             //archiveArtifacts artifacts: '**/target/*.war'
+    //     //         }         
+    //     //     }
+    // }
     stage("deploy_dev")
     {
         // when{ expression {params.select_environment == 'dev'}
