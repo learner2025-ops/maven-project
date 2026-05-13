@@ -51,9 +51,9 @@ environment {
         // when{ expression {params.select_environment == 'dev'}
         // beforeAgent true}
         // agent { label 'dev'}
+        when { branch 'feature' beforeAgent true}
          agent any
         steps{
-            when { branch "feature" beforeAgent true}
             sshagent(credentials: ['remote_ssh_login']) {
                     sh '''
                     echo "Copy WAR to remote server"
@@ -83,9 +83,9 @@ environment {
         // when{ expression {params.select_environment == 'dev'}
         // beforeAgent true}
         // agent { label 'dev'}
+        when { branch 'master' beforeAgent true}
          agent any
         steps{
-            when { branch "master" beforeAgent true}
             sshagent(credentials: ['remote_ssh_login']) {
                     sh '''
                     echo "Copy WAR to remote server"
