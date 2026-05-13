@@ -58,7 +58,7 @@ environment {
                     sh '''
                     echo "Copy WAR to remote server"
                     scp -o StrictHostKeyChecking=no \
-                    /var/lib/jenkins/workspace/deployment/webapp/target/*.war \
+                    /var/lib/jenkins/workspace/test_multi/webapp/target/*.war \
                     ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
 
                     echo "Deploy application"
@@ -90,7 +90,7 @@ environment {
                     sh '''
                     echo "Copy WAR to remote server"
                     scp -o StrictHostKeyChecking=no \
-                    /var/lib/jenkins/workspace/deployment/webapp/target/*.war \
+                    /var/lib/jenkins/workspace/test_multi/webapp/target/*.war \
                     ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
 
                     echo "Deploy application"
