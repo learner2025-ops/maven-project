@@ -51,7 +51,8 @@ environment {
         // when{ expression {params.select_environment == 'dev'}
         // beforeAgent true}
         // agent { label 'dev'}
-        when { branch 'feature' beforeAgent true}
+        when { branch 'feature' 
+        beforeAgent true}
          agent any
         steps{
             sshagent(credentials: ['remote_ssh_login']) {
@@ -83,7 +84,8 @@ environment {
         // when{ expression {params.select_environment == 'dev'}
         // beforeAgent true}
         // agent { label 'dev'}
-        when { branch 'master' beforeAgent true}
+        when { branch 'master' 
+        beforeAgent true}
          agent any
         steps{
             sshagent(credentials: ['remote_ssh_login']) {
