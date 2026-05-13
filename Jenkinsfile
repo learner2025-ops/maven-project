@@ -53,7 +53,7 @@ environment {
         // agent { label 'dev'}
         when { branch 'feature' 
         beforeAgent true}
-         agent any
+         //agent any
         steps{
             sshagent(credentials: ['remote_ssh_login']) {
                     sh '''
@@ -86,7 +86,7 @@ environment {
         // agent { label 'dev'}
         when { branch 'master' 
         beforeAgent true}
-         agent any
+         //agent any
         steps{
             sshagent(credentials: ['remote_ssh_login']) {
                     sh '''
