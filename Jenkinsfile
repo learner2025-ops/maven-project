@@ -60,12 +60,12 @@ environment {
                     echo "Copy WAR to remote server"
                     scp -o StrictHostKeyChecking=no \
                     /var/lib/jenkins/workspace/test_multi_feature/webapp/target/*.war \
-                    ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
+                    ${REMOTE_USER}@${DEV_SERVER}:/tmp/${APP_NAME}.war
 
                     echo "Deploy application"
 
                     ssh -o StrictHostKeyChecking=no \
-                    ${REMOTE_USER}@${REMOTE_SERVER} "
+                    ${REMOTE_USER}@${DEV_SERVER} "
 
                         rm -rf ${TOMCAT_PATH}/${APP_NAME}*
 
@@ -93,12 +93,12 @@ environment {
                     echo "Copy WAR to remote server"
                     scp -o StrictHostKeyChecking=no \
                     /var/lib/jenkins/workspace/test_multi_master/webapp/target/*.war \
-                    ${REMOTE_USER}@${REMOTE_SERVER}:/tmp/${APP_NAME}.war
+                    ${REMOTE_USER}@${PROD_SERVER}:/tmp/${APP_NAME}.war
 
                     echo "Deploy application"
 
                     ssh -o StrictHostKeyChecking=no \
-                    ${REMOTE_USER}@${REMOTE_SERVER} "
+                    ${REMOTE_USER}@${PROD_SERVER} "
 
                         rm -rf ${TOMCAT_PATH}/${APP_NAME}*
 
